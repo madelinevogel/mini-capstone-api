@@ -7,10 +7,10 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 product = Product.new(name: "Trampoline", price: 300, description: "10ft x 6ft rectangle outdoor trampoline")
-product.save
+product.save!
 
 product = Product.new(name: "Tea Kettle", price: 34, description: "red tea kettle to heat water")
-product.save
+product.save!
 
 product = Product.new(name: "Blanket", price: 40, description: "fuzzy white blanket")
-product.save
+product.save!
