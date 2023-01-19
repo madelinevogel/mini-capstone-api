@@ -11,9 +11,10 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.create(
-      name: "Car Seat",
-      price: 250,
-      description: "Put in car to protect children",
+      name: params["name"],
+      price: params["price"],
+      description: params["description"],
+      image_url: params["image_url"],
     )
 
     render :show
