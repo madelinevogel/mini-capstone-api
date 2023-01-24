@@ -5,9 +5,11 @@ one:
   price: 1
   image_url: MyString
   description: TestProductDescription
+  inventory: 1
 
 two:
   name: TestProduct2
   price: 1
   image_url: MyString
   description: TestProductDescription
+  inventory: 1
