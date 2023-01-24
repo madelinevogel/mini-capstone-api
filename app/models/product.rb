@@ -1,16 +1,10 @@
 class Product < ApplicationRecord
-  # def is_discounted?
-  #   if price <= 10
-  #   return true
-  # end
-
-  # while true
-  #   puts "Enter a number: "
-  #   input = gets.chomp
-  #   if input.to_i > 10
-  #     break
-  #   end
-  # end
+  validates :name, presence: true
+  validates :name, uniqueness: true
+  validates :price, presence: true
+  validates :price, numericality: { greater_than: 0 }
+  validates :description, presence: true
+  validates :description, length: { in: 10..500 }
 
   def is_discounted?
     price <= 10

@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+Product.destroy_all
 
 product = Product.new(name: "Trampoline", price: 300, description: "10ft x 6ft rectangle outdoor trampoline")
 product.save!
