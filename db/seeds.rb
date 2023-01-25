@@ -7,11 +7,14 @@
 #   Character.create(name: "Luke", movie: movies.first)
 Product.destroy_all
 
-product = Product.new(name: "Trampoline", price: 300, description: "10ft x 6ft rectangle outdoor trampoline")
-product.save!
+Product.create(name: "Trampoline", price: 300, description: "10ft x 6ft rectangle outdoor trampoline")
 
-product = Product.new(name: "Tea Kettle", price: 34, description: "red tea kettle to heat water")
-product.save!
+Product.create(name: "Tea Kettle", price: 34, description: "red tea kettle to heat water")
 
-product = Product.new(name: "Blanket", price: 40, description: "fuzzy white blanket")
-product.save!
+Product.create(name: "Blanket", price: 40, description: "fuzzy white blanket")
+
+Supplier.create(name: "Nike", email: "nike@test.com", phone_number: "402-329-4545")
+
+Supplier.create(name: "Adidas", email: "adidas@test.com", phone_number: "402-445-3333")
+
+Supplier.create(name: "Lululemon", email: "lulu@test.com", phone_number: "402-320-9900")
