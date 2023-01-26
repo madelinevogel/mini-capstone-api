@@ -6,15 +6,14 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 Product.destroy_all
+Supplier.destroy_all
 
-Product.create(name: "Trampoline", price: 300, description: "10ft x 6ft rectangle outdoor trampoline")
+supplier1 = Supplier.create(name: "Nike", email: "nike@test.com", phone_number: "402-329-4545")
+supplier2 = Supplier.create(name: "Adidas", email: "adidas@test.com", phone_number: "402-445-3333")
+supplier3 = Supplier.create(name: "Lululemon", email: "lulu@test.com", phone_number: "402-320-9900")
 
-Product.create(name: "Tea Kettle", price: 34, description: "red tea kettle to heat water")
+Product.create(name: "Trampoline", price: 300, description: "10ft x 6ft rectangle outdoor trampoline", inventory: 6, supplier_id: supplier1.id)
 
-Product.create(name: "Blanket", price: 40, description: "fuzzy white blanket")
+Product.create(name: "Tea Kettle", price: 34, description: "red tea kettle to heat water", inventory: 6, supplier_id: supplier1.id)
 
-Supplier.create(name: "Nike", email: "nike@test.com", phone_number: "402-329-4545")
-
-Supplier.create(name: "Adidas", email: "adidas@test.com", phone_number: "402-445-3333")
-
-Supplier.create(name: "Lululemon", email: "lulu@test.com", phone_number: "402-320-9900")
+Product.create(name: "Blanket", price: 40, description: "fuzzy white blanket", inventory: 6, supplier_id: supplier3.id)
