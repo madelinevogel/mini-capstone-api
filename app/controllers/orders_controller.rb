@@ -17,4 +17,10 @@ class OrdersController < ApplicationController
 
     :show
   end
+
+  def index
+    @orders = Order.all
+
+    :index
+  end
 end
