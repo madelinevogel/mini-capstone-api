@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user
+
   def create
     product = Product.find_by(id: params[:product_id])
     quantity = params[:quantity].to_i
@@ -19,9 +21,9 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find_by(id: params[:id])
+    @order = current_user.orders.find_by(id: params[:id])
 
-    if current_user && current_user.id == @order.user_id
+    if @order
       :show
     else
       render json: {}, status: :unauthorized
@@ -29,12 +31,8 @@ class OrdersController < ApplicationController
   end
 
   def index
-    if current_user
-      @orders = current_user.orders
+    @orders = current_user.orders
 
-      :index
-    else
-      render json: {}, status: :unauthorized
-    end
+    :index
   end
 end
