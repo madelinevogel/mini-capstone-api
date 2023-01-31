@@ -11,4 +11,10 @@ class OrdersController < ApplicationController
 
     render :show
   end
+
+  def show
+    @order = Order.find_by(id: params[:id])
+
+    :show
+  end
 end

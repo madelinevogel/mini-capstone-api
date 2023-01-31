@@ -10,9 +10,8 @@ Rails.application.routes.draw do
   delete "/products/:id" => "products#destroy"
 
   post "/orders" => "orders#create"
+  get "/orders/:id" => "orders#show"
 
-  #signup
-  post "/users" => "users#create"
-  #login
-  post "/sessions" => "sessions#create"
+  post "/users" => "users#create" #signup
+  post "/sessions" => "sessions#create" #login
 end
