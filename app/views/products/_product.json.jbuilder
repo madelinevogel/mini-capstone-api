@@ -8,5 +8,6 @@ json.images product.images
 json.supplier product.supplier
 json.description product.description
 json.inventory product.inventory
+json.categories product.categories
 json.created_at product.created_at
 json.updated_at product.updated_at
