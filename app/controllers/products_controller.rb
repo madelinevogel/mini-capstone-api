@@ -3,6 +3,11 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+
+    if params[:category]
+      category = Category.find_by(name: params[:category])
+      @products = category.products
+    end
     render template: "products/index"
   end
 
@@ -18,7 +23,6 @@ class ProductsController < ApplicationController
       description: params["description"],
       supplier_id: params["supplier_id"],
     )
-
     if @product.valid?
       if params[:image_url]
         Image.create(url: params[:image_url, product_id: @product.id])
