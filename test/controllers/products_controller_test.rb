@@ -13,14 +13,18 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response 200
     data = JSON.parse(response.body)
     assert_equal Product.count, data.length
+
+    category = Category.first
+    get "/products.json?category=#{category.name}"
+    data = JSON.parse(response.body)
+    assert_equal category.products.length, data.length
   end
 
   test "show" do
     get "/products/#{Product.first.id}.json"
     assert_response 200
-
     data = JSON.parse(response.body)
-    assert_equal ["id", "name", "price", "is_discounted?", "tax", "total", "images", "supplier", "description", "inventory", "categories", "created_at", "updated_at"], data.keys
+    assert_equal ["id", "name", "price", "description", "is_discounted?", "tax", "total", "supplier_id", "images", "created_at", "updated_at", "categories", "inventory"].sort, data.keys.sort
   end
 
   test "create" do
@@ -43,6 +47,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "Updated name", data["name"]
     assert_equal product.price.to_s, data["price"]
     assert_equal product.description, data["description"]
+    # assert_equal product.quantity, data["quantity"]
 
     patch "/products/#{product.id}.json", params: { price: 0 }, headers: { "Authorization" => "Bearer #{@jwt}" }
     assert_response 422
@@ -50,7 +55,6 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     patch "/products/#{product.id}.json", params: {}
     assert_response 401
   end
-
   test "destroy" do
     assert_difference "Product.count", -1 do
       delete "/products/#{Product.first.id}.json", headers: { "Authorization" => "Bearer #{@jwt}" }

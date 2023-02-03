@@ -1,12 +1,27 @@
 class CartedProductsController < ApplicationController
   def create
     @carted_product = CartedProduct.create(
-      user_id: params[:user_id],
+      user_id: current_user.id,
       product_id: params[:product_id],
       quantity: params[:quantity],
-      status: params[:status],
-      order_id: params[:order_id],
+      status: "carted",
+      order_id: nil,
     )
     render :show
   end
+
+  def index
+    @carted_products = current_user.carted_products.where(status: "carted")
+
+    render :index
+  end
+
+  def destroy
+    carted_product = current_user.carted_products.find_by(id: params[:id])
+    carted_product.update(status: "removed")
+
+    render json: { message: "Product successfully removed from cart" }
+  end
 end
+
+# @carted_products = CartedProduct.all
